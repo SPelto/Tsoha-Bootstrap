@@ -20,7 +20,10 @@ class HelloWorldController extends BaseController {
         View::make('luoTapahtuma.html');
     }
 
-    public static function tapahtuma_selaa() {
+    public static function tapahtuma_lista() {
+        View::make('tapahtuma_lista.html');
+    }
+    public static function tapahtuma_info() {
         View::make('tapahtuma_selaa.html');
     }
 

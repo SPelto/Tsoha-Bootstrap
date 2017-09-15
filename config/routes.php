@@ -16,8 +16,11 @@ $routes->get('/luoTapahtuma', function() {
     HelloWorldController::luoTapahtuma();
 });
 
-$routes->get('/selaa', function() {
-    HelloWorldController::tapahtuma_selaa();
+$routes->get('/tapahtuma_info', function() {
+    HelloWorldController::tapahtuma_info();
+});
+$routes->get('/tapahtuma_lista', function() {
+    HelloWorldController::tapahtuma_lista();
 });
 $routes->get('/ryhma_info', function() {
     HelloWorldController::ryhma_info();
