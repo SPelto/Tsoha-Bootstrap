@@ -4,7 +4,7 @@ class HelloWorldController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-        echo 'Tämä on etusivu';
+        View::make('home.html');
     }
 
     public static function sandbox() {
@@ -24,8 +24,11 @@ class HelloWorldController extends BaseController {
         View::make('tapahtuma_selaa.html');
     }
 
-    public static function kokeilu() {
-        echo 'Pääsit tänne!';
+    public static function ryhma_info() {
+        View::make('ryhma_info.html');
     }
 
+    public static function ryhma_lista() {
+        View::make('ryhma_lista.html');
+    }
 }

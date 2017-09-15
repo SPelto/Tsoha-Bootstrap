@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Ryhmän jäsenet</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Liity ryhmään</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Liittymispäivä</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      <tr>
+        <td><a href="#">Joni</a></td>
+        <td>15.9.2017</td>
+        <td><label class="label label-danger">aktiivinen</label></td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
