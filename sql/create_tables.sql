@@ -1,20 +1,29 @@
 CREATE TABLE Kayttaja(
 id SERIAL PRIMARY KEY,
-nimi varchar(50) NOT NULL
+nimi varchar(50) NOT NULL,
+puhelinnumero INTEGER
 );
 CREATE TABLE Ryhma(
 id SERIAL PRIMARY KEY,
-ryhma_nimi varchar(50) NOT NULL,
-Ryhma_kuvaus varchar(500) NOT NULL
+nimi varchar(50) NOT NULL,
+kuvaus varchar(500) NOT NULL,
+perustettu DATE NOT NULL
 );
 CREATE TABLE Liitostaulu(
 Kayttaja_id INTEGER REFERENCES Kayttaja(id),
 Ryhma_id INTEGER REFERENCES Ryhma(id)
 );
 CREATE TABLE Tapahtuma(
+id SERIAL PRIMARY KEY,
 Ryhma_id INTEGER REFERENCES Ryhma(id),
-Tapahtuma_nimi varchar(50) NOT NULL,
-Tapahtuma_kuvaus varchar(500) NOT NULL
+nimi varchar(50) NOT NULL,
+kuvaus varchar(500) NOT NULL,
+aika DATE NOT NULL
+);
+CREATE TABLE Perustaja(
+Ryhma_id INTEGER REFERENCES Ryhma(id),
+Tapahtuma_id INTEGER REFERENCES Tapahtuma(id),
+Kayttaja_id INTEGER REFERENCES Kayttaja(id)
 );
 -- CREATE TABLE Player(
 --   id SERIAL PRIMARY KEY, -- SERIAL tyyppinen pääavain pitää huolen, että tauluun lisätyllä rivillä on aina uniikki pääavain. Kätevää!
