@@ -8,7 +8,7 @@ Yleisiä linkkejä:
 Linkkejä sovelluksen eri osiin:
 
 * [Linkki sisäänkirjautumiseen](http://xpexpexp.users.cs.helsinki.fi/handler/login)
-* [Linkki ryhmän info-sivulle](hhttp://xpexpexp.users.cs.helsinki.fi/handler/ryhma_info)
+* [Linkki ryhmän info-sivulle](http://xpexpexp.users.cs.helsinki.fi/handler/ryhma_info)
 * [Linkki listalle ryhmiä](http://xpexpexp.users.cs.helsinki.fi/handler/ryhma_lista)
 * [Linkki tapahtuman luomiseen](http://xpexpexp.users.cs.helsinki.fi/handler/luoTapahtuma)
 ## Työn aihe
