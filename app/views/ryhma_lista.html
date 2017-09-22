@@ -1,24 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Kaikki ryhmät</h1>
+<h1>Kaikki ryhmät</h1>
 
-  <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Nimi</th>
-        <th>Perustamispäivä</th>
-        <th>kuvaus</th>
-      </tr>
+        <tr>
+            <th>Nimi</th>
+            <th>Perustamispäivä</th>
+            <th>kuvaus</th>
+            <th></th>
+        </tr>
     </thead>
 
     <tbody>
-      {% for ryhma in ryhmat %}
+        {% for ryhma in ryhmat %}
         <tr>
-          <td>{{ryhma.nimi}}</td>
-          <td>{{ryhma.perustettu}}</td>
-          <td>{{ryhma.kuvaus}}</td>
+            <td>
+                <p>
+                    <a href="/handler/ryhma/info" class="btn-default">{{ryhma.nimi}}</a>
+                </p>
+            </td>
+            <td>{{ryhma.perustettu}}</td>
+            <td>{{ryhma.kuvaus}}</td>
         </tr>
-      {% endfor %}
+        {% endfor %}
     </tbody>
-  </table>
+</table>
 {% endblock %}

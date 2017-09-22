@@ -1,27 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ryhmän jäsenet</h1>
+<h1>Kaikki ryhmät</h1>
 
-  <p>
-    <a href="#" class="btn btn-success">Liity ryhmään</a>
-  </p>
-
-  <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Nimi</th>
-        <th>Liittymispäivä</th>
-        <th>Status</th>
-      </tr>
+        <tr>
+            <th>Nimi</th>
+            <th>Perustamispäivä</th>
+            <th>kuvaus</th>
+        </tr>
     </thead>
 
     <tbody>
-      <!-- Listataan pelit tähän -->
-      <tr>
-        <td><a href="#">Joni</a></td>
-        <td>15.9.2017</td>
-        <td><label class="label label-danger">aktiivinen</label></td>
-      </tr>
+        <tr>
+            {% for ryhma in ryhmat %}
+        <tr>
+            <td>{{ryhma.nimi}}<</td>
+            <td>{{ryhma.perustettu}}</td>
+            <td>{{ryhma.kuvaus}}</td>
+        </tr>
+        {% endfor %}
+        </tr>
     </tbody>
-  </table>
+</table>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Mikä</th>
+            <th>Helvetti</th>
+            <th>Siinä</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>on kun<</td>
+            <td>1 - kokoset arrayt kusee</td>
+            <td>koko paskan</td>
+        </tr>
+        <tr>
+            <td>sen<</td>
+            <td>lisäks saa oottaa viellä 1- 5min latauksia jokaisen</td>
+            <td>kokeilun välillä</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}

@@ -1,56 +1,54 @@
 <?php
 
 $routes->get('/', function() {
-HelloWorldController::index();
+    HelloWorldController::index();
 });
 
 $routes->get('/hiekkalaatikko', function() {
-HelloWorldController::sandbox();
+    HelloWorldController::sandbox();
 });
 
 $routes->get('/login', function() {
-HelloWorldController::login();
+    HelloWorldController::login();
 });
 
 $routes->get('/login/new', function() {
-HelloWorldController::login_new();
+    HelloWorldController::login_new();
 });
 
 $routes->post('/kayttaja/post', function() {
-HelloWorldController::tallenna_kayttaja();
+    HelloWorldController::tallenna_kayttaja();
 });
-
-
 $routes->post('/tapahtuma/post', function() {
-HelloWorldController::tallenna_tapahtuma();
+    tapahtuma_controller::tallenna_tapahtuma();
 });
 
 $routes->get('/tapahtuma/new', function() {
-HelloWorldController::tapahtuma_new();
+    tapahtuma_controller::tapahtuma_new();
 });
 
 $routes->get('/tapahtuma/info', function() {
-HelloWorldController::tapahtuma_info();
+    tapahtuma_controller::tapahtuma_info();
 });
 $routes->get('/tapahtuma/lista', function() {
-HelloWorldController::tapahtuma_lista();
+    tapahtuma_controller::tapahtuma_lista();
 });
-$routes->get('/ryhma/info', function() {
-HelloWorldController::ryhma_info();
+$routes->get('/ryhma/info/:id', function($id) {
+    ryhma_controller::ryhma_info($id);
 });
 $routes->get('/ryhma/lista', function() {
-HelloWorldController::ryhma_lista();
+    ryhma_controller::ryhma_lista();
 });
 
 $routes->post('/ryhma/post', function() {
-HelloWorldController::tallenna_ryhma();
+    ryhma_controller::tallenna_ryhma();
 });
 
 $routes->get('/ryhma/new', function() {
-HelloWorldController::ryhma_new();
+    ryhma_controller::ryhma_new();
 });
 
 $routes->get('/aika', function() {
-HelloWorldController::aika();
+    HelloWorldController::aika();
 });
 

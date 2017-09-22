@@ -31,13 +31,13 @@ Class Ryhma extends BaseModel {
         $row = $query->fetch();
 
         if ($row) {
-            $Kayttaja = new Ryhma(array(
+            $ryhma = new Ryhma(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
                 'kuvaus' => $row['kuvaus'],
                 'perustettu' => $row['perustettu']
             ));
-            return $Ryhma;
+            return $ryhma;
         }
         return null;
     }
