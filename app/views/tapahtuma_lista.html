@@ -6,20 +6,19 @@
     <thead>
       <tr>
         <th>Nimi</th>
-        <th>Luomispäivä</th>
-        <th>Alkamisajankohta</th>
-        <th>Status</th>
+        <th>Ajankohta</th>
+        <th>Kuvaus</th>
       </tr>
     </thead>
 
     <tbody>
-      <!-- Listataan pelit tähän -->
-      <tr>
-        <td><a href="#">Jonitus</a></td>
-        <td>15.9.2017</td>
-        <td>20.9.2017 klo16.00</td>
-        <td><label class="label label-danger">Täynnä</label></td>
-      </tr>
+      {% for tapahtuma in tapahtumat %}
+        <tr>
+          <td>{{tapahtuma.nimi}}</td>
+          <td>{{tapahtuma.aika}}</td>
+          <td>{{tapahtuma.kuvaus}}</td>
+        </tr>
+      {% endfor %}
     </tbody>
   </table>
 {% endblock %}

@@ -1,13 +1,13 @@
 CREATE TABLE Kayttaja(
 id SERIAL PRIMARY KEY,
 nimi varchar(50) NOT NULL,
-puhelinnumero INTEGER
+puhelinnumero varchar(13)
 );
 CREATE TABLE Ryhma(
 id SERIAL PRIMARY KEY,
 nimi varchar(50) NOT NULL,
 kuvaus varchar(500) NOT NULL,
-perustettu DATE NOT NULL
+perustettu Timestamp NOT NULL
 );
 CREATE TABLE Liitostaulu(
 Kayttaja_id INTEGER REFERENCES Kayttaja(id),
@@ -18,7 +18,7 @@ id SERIAL PRIMARY KEY,
 Ryhma_id INTEGER REFERENCES Ryhma(id),
 nimi varchar(50) NOT NULL,
 kuvaus varchar(500) NOT NULL,
-aika DATE NOT NULL
+aika Timestamp NOT NULL
 );
 CREATE TABLE Perustaja(
 Ryhma_id INTEGER REFERENCES Ryhma(id),
