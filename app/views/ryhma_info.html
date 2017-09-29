@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Kaikki ryhmät</h1>
+<h1>Ryhmän "{{ryhma.nimi}}" tiedot</h1>
+<p>
+    <a href="/handler/ryhma/edit/{{ryhma.id}}" class="btn btn-default">Muokkaa</a>
+</p>
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -12,37 +15,11 @@
     </thead>
 
     <tbody>
-        <tr>
-            {% for ryhma in ryhmat %}
-        <tr>
-            <td>{{ryhma.nimi}}<</td>
-            <td>{{ryhma.perustettu}}</td>
-            <td>{{ryhma.kuvaus}}</td>
-        </tr>
-        {% endfor %}
-        </tr>
-    </tbody>
-</table>
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Mikä</th>
-            <th>Helvetti</th>
-            <th>Siinä</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>on kun<</td>
-            <td>1 - kokoset arrayt kusee</td>
-            <td>koko paskan</td>
-        </tr>
-        <tr>
-            <td>sen<</td>
-            <td>lisäks saa oottaa viellä 1- 5min latauksia jokaisen</td>
-            <td>kokeilun välillä</td>
-        </tr>
+            <tr>
+                <td>{{ryhma.nimi}}</td>
+                <td>{{ryhma.perustettu}}</td>
+                <td>{{ryhma.kuvaus}}</td>
+            </tr>
     </tbody>
 </table>
 {% endblock %}

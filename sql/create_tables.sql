@@ -1,5 +1,7 @@
 CREATE TABLE Kayttaja(
 id SERIAL PRIMARY KEY,
+username varchar(50) NOT NULL,
+password varchar(50) NOT NULL,
 nimi varchar(50) NOT NULL,
 puhelinnumero varchar(13)
 );

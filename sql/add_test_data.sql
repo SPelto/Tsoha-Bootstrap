@@ -1,7 +1,7 @@
-INSERT INTO Kayttaja (nimi, puhelinnumero) VALUES ('Joni',050123123);
-INSERT INTO Kayttaja (nimi, puhelinnumero) VALUES ('Matti',050345345);
-INSERT INTO Kayttaja (nimi, puhelinnumero) VALUES ('Akseli',040123123);
-INSERT INTO Kayttaja (nimi, puhelinnumero) VALUES ('Hannu',050000000);
+INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Joni',050123123, 'Jon', 'Snow');
+INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Matti',050345345, 'Mati', 'salasana');
+INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Akseli',040123123, 'Aksu', 'tiistai');
+INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Hannu',050000000, 'Hansu', '1234');
 
 
 

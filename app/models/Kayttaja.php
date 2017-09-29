@@ -2,10 +2,11 @@
 
 Class Kayttaja extends BaseModel {
 
-    public $id, $nimi, $puhelinnumero;
+    public $id, $nimi, $puhelinnumero, $username, $password;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi', 'validate_puhelinnumero');
     }
 
     public static function all() {
@@ -18,7 +19,9 @@ Class Kayttaja extends BaseModel {
             $Kayttajat[] = new Kayttaja(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
-                'puhelinnumero' => $row['puhelinnumero']
+                'puhelinnumero' => $row['puhelinnumero'],
+                'username' => $row['username'],
+                'password' => $row['password']
             ));
         }
         return $Kayttajat;
@@ -39,12 +42,27 @@ Class Kayttaja extends BaseModel {
         }
         return null;
     }
-        public function save() {
+
+    public function save() {
         $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimi, puhelinnumero) '
                 . 'VALUES (:nimi, :puhelinnumero) RETURNING id');
         $query->execute(array('nimi' => $this->nimi, 'puhelinnumero' => $this->puhelinnumero));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
-
+    public static function authenticate($username, $password) {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE username = :username AND password = :password LIMIT 1');
+        $query->execute(array('username' => $username, 'password' => $password));
+        $row = $query->fetch();
+        if($row) {
+            $kayttaja = new Kayttaja(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi'],
+                'puhelinnumero' => $row['puhelinnumero']
+            ));
+            return $kayttaja;
+        } else {
+            return null;
+        }
+    }
 }

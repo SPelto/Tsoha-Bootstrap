@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{tapahtuma.nimi}}</h1>
+<!-- Painikkeet tähän -->
+<p>
+    <a href="/handler/tapahtuma/edit/{{tapahtuma.id}}" class="btn btn-default">Muokkaa</a>
+</p>
+<!-- Tiedot tulee listana tähän -->
+<ul>
+    <li><strong>Milloin:</strong> {{tapahtuma.aika|date(Y-m-d)}} </li>
+</ul>
+<!-- Kuvaus tulee tähän -->
+<p>
+    {{tapahtuma.kuvaus}}
+</p>
+{% endblock %}

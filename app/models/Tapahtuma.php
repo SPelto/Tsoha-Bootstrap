@@ -26,7 +26,7 @@ Class Tapahtuma extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Ryhma WHERE id = :id');
+        $query = DB::connection()->prepare('SELECT * FROM Tapahtuma WHERE id = :id');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
 
@@ -48,6 +48,15 @@ Class Tapahtuma extends BaseModel {
         $query->execute(array('nimi' => $this->nimi, 'kuvaus' => $this->kuvaus, 'aika' => $this->aika));
         $row = $query->fetch();
         $this->id = $row['id'];
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Tapahtuma SET nimi =:nimi, kuvaus =:kuvaus, aika=:aika WHERE id=:id');
+        $query->execute(array('nimi' => $this->nimi, 'kuvaus' => $this->kuvaus, 'aika' => $this->aika, 'id' => $this->id));
+    }
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Tapahtuma WHERE id =:id');
+        $query->execute(array('id' => $this->id));
     }
 
 }

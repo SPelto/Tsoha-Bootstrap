@@ -41,13 +41,23 @@ Class Ryhma extends BaseModel {
         }
         return null;
     }
-    
+
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Ryhma (nimi, perustettu, kuvaus) '
                 . 'VALUES (:nimi, :perustettu, :kuvaus) RETURNING id');
         $query->execute(array('nimi' => $this->nimi, 'perustettu' => $this->perustettu, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
         $this->id = $row['id'];
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Ryhma SET nimi =:nimi, kuvaus =:kuvaus WHERE id=:id');
+        $query->execute(array('nimi' => $this->nimi, 'kuvaus' => $this->kuvaus, 'id' => $this->id));
+    }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Ryhma WHERE id =:id');
+        $query->execute(array('id' => $this->id));
     }
 
 }

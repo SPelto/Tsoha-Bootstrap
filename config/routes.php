@@ -9,7 +9,12 @@ $routes->get('/hiekkalaatikko', function() {
 });
 
 $routes->get('/login', function() {
-    HelloWorldController::login();
+// Kirjautumislomakkeen esittäminen
+    kayttaja_controller::login();
+});
+$routes->post('/login', function() {
+// Kirjautumisen käsittely
+    kayttaja_controller::handle_login();
 });
 
 $routes->get('/login/new', function() {
@@ -27,12 +32,23 @@ $routes->get('/tapahtuma/new', function() {
     tapahtuma_controller::tapahtuma_new();
 });
 
-$routes->get('/tapahtuma/info', function() {
-    tapahtuma_controller::tapahtuma_info();
+$routes->get('/tapahtuma/info/:id', function($id) {
+    tapahtuma_controller::tapahtuma_info($id);
 });
 $routes->get('/tapahtuma/lista', function() {
     tapahtuma_controller::tapahtuma_lista();
 });
+$routes->post('/tapahtuma/:id/edit', function($id){
+  // Pelin muokkaaminen
+  tapahtuma_controller::update($id);
+});
+$routes->post('/tapahtuma/:id/destroy', function($id) {
+    tapahtuma_controller::tapahtuma_destroy($id);
+});
+$routes->get('/tapahtuma/edit/:id', function($id) {
+    tapahtuma_controller::tapahtuma_edit($id);
+});
+
 $routes->get('/ryhma/info/:id', function($id) {
     ryhma_controller::ryhma_info($id);
 });
@@ -47,7 +63,15 @@ $routes->post('/ryhma/post', function() {
 $routes->get('/ryhma/new', function() {
     ryhma_controller::ryhma_new();
 });
-
+$routes->get('/ryhma/edit/:id', function($id) {
+    ryhma_controller::ryhma_edit($id);
+});
+$routes->post('/ryhma/:id/edit', function($id) {
+    ryhma_controller::ryhma_update($id);
+});
+$routes->post('/ryhma/:id/destroy', function($id) {
+    ryhma_controller::ryhma_destroy($id);
+});
 $routes->get('/aika', function() {
     HelloWorldController::aika();
 });

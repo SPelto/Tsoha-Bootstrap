@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Vanhat tiedot</h1>
+<ul>
+    <li><strong>Nimi:</strong> {{ryhma.nimi}} </li>
+</ul>
+<ul>
+    <li><strong>Perustettu:</strong> {{ryhma.perustettu|date(Y-m-d)}} HUOM!!! Tämä osio ei toimi viellä kunnolla</li>
+</ul>
+<ul>
+    <li><strong>Kuvaus:</strong> {{ryhma.kuvaus}} </li>
+</ul>
+
+<form method="post" action="/handler/ryhma/{{ryhma.id}}/edit">
+    <div class="form-group">
+        <label>nimi</label>
+        <input type="text" name="nimi" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>kuvaus</label>
+        <input type="text" name="kuvaus" class="form-control">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Muokkaa</button>
+    </div>
+</form>
+
+<form method="post" action="/handler/ryhma/{{ryhma.id}}/destroy">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Poista</button>
+    </div>
+</form>
+{% endblock %}

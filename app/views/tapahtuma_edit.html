@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Vanhat tiedot</h1>
+<ul>
+    <li><strong>Nimi:</strong> {{tapahtuma.nimi}} </li>
+</ul>
+<ul>
+    <li><strong>Milloin:</strong> {{tapahtuma.aika|date(Y-m-d)}} HUOM!!! Tämä osio ei toimi viellä kunnolla</li>
+</ul>
+<ul>
+    <li><strong>Kuvaus:</strong> {{tapahtuma.kuvaus}} </li>
+</ul>
+
+<form method="post" action="/handler/tapahtuma/{{tapahtuma.id}}/edit">
+    <div class="form-group">
+        <label>nimi</label>
+        <input type="text" name="nimi" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>kuvaus</label>
+        <input type="text" name="kuvaus" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Milloin</label>
+        <input type="text" name="aika" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Muokkaa</button>
+    </div>
+</form>
+
+<form method="post" action="/handler/tapahtuma/{{tapahtuma.id}}/destroy">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Poista</button>
+    </div>
+</form>
+{% endblock %}

@@ -14,9 +14,13 @@
     <tbody>
       {% for tapahtuma in tapahtumat %}
         <tr>
-          <td>{{tapahtuma.nimi}}</td>
-          <td>{{tapahtuma.aika}}</td>
-          <td>{{tapahtuma.kuvaus}}</td>
+            <td>
+                <p>
+                    <a href="/handler/tapahtuma/info/{{tapahtuma.id}}" class="btn-default">{{tapahtuma.nimi}}</a>
+                </p>
+            </td>
+            <td>{{tapahtuma.aika}}</td>
+            <td>{{tapahtuma.kuvaus}}</td>
         </tr>
       {% endfor %}
     </tbody>
