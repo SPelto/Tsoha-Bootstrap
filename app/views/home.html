@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="page-header">
+{% if message %}
+<h1>{{message}}</h1>
+{% else %}
+<div class="page-header">
     <h1>Tervetuloa timehandleriin</h1>
-  </div>
+    <p>
+        <a href="http://xpexpexp.users.cs.helsinki.fi/handler/login" class="btn btn-primary btn-lg">Kirjaudu tästä sisään <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </p>
+</div>
+{% endif %}
 
-  <p>
-    <a href="http://xpexpexp.users.cs.helsinki.fi/handler/login" class="btn btn-primary btn-lg">Kirjaudu tästä sisään <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </p>
 {% endblock %}

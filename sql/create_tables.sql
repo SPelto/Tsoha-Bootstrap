@@ -20,12 +20,15 @@ id SERIAL PRIMARY KEY,
 Ryhma_id INTEGER REFERENCES Ryhma(id),
 nimi varchar(50) NOT NULL,
 kuvaus varchar(500) NOT NULL,
-aika Timestamp NOT NULL
+aika varchar(50) NOT NULL
 );
-CREATE TABLE Perustaja(
-Ryhma_id INTEGER REFERENCES Ryhma(id),
-Tapahtuma_id INTEGER REFERENCES Tapahtuma(id),
-Kayttaja_id INTEGER REFERENCES Kayttaja(id)
+CREATE TABLE Ryhmaperustaja(
+ryhma_id INTEGER REFERENCES Ryhma(id),
+kayttaja_id INTEGER REFERENCES Kayttaja(id)
+);
+CREATE TABLE Tapahtumaperustaja(
+tapahtuma_id INTEGER REFERENCES Tapahtuma(id),
+kayttaja_id INTEGER REFERENCES Kayttaja(id)
 );
 -- CREATE TABLE Player(
 --   id SERIAL PRIMARY KEY, -- SERIAL tyyppinen pääavain pitää huolen, että tauluun lisätyllä rivillä on aina uniikki pääavain. Kätevää!

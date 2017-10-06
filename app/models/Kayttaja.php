@@ -27,9 +27,9 @@ Class Kayttaja extends BaseModel {
         return $Kayttajat;
     }
 
-    public static function find($puhelinnumero) {
-        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE puhelinnumero = :puhelinnumero');
-        $query->execute(array('puhelinnumero' => $puhelinnumero));
+    public static function find($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id');
+        $query->execute(array('id' => $id));
         $row = $query->fetch();
 
         if ($row) {
@@ -44,9 +44,9 @@ Class Kayttaja extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimi, puhelinnumero) '
-                . 'VALUES (:nimi, :puhelinnumero) RETURNING id');
-        $query->execute(array('nimi' => $this->nimi, 'puhelinnumero' => $this->puhelinnumero));
+        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) '
+                . 'VALUES (:nimi, :puhelinnumero, :username, :password) RETURNING id');
+        $query->execute(array('nimi' => $this->nimi, 'puhelinnumero' => $this->puhelinnumero, 'username' => $this->username, 'password' => $this->password));
         $row = $query->fetch();
         $this->id = $row['id'];
     }

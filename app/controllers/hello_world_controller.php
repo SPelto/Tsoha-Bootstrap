@@ -23,14 +23,6 @@ class HelloWorldController extends BaseController {
         Kint::dump($errors);
     }
 
-    public static function tallenna_kayttaja() {
-        $params = $_POST;
-        $kayttaja = new Kayttaja(array(
-            'nimi' => $params['nimi'],
-            'puhelinnumero' => $params['puhelinnumero'],
-        ));
-        $kayttaja->save();
-        Redirect::to('/ryhma/lista', array('message' => 'Kayttaja lisätty järjestelmään'));
-    }
+
 
 }

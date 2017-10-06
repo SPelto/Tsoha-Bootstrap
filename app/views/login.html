@@ -1,29 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
+
 <h1>Kirjaudu sisään</h1>
 
-<!-- Kaikki lomakkeen elementit form-tagin sisään -->
+{% if error %}
+<h1> {{error}} </h1>
+{% endif %}
 
-  <h1>Kirjaudu sisään</h1>
+{% if message %}
+<h1> {{message}} </h1>
+{% endif %}
 
-  <form method="post" action="/handler/login">
+<form method="post" action="/handler/login">
     <div class="form-group">
-      <label>Käyttäjätunnus</label>
-      <input type="text" class="form-control" name="username" value="{{username}}">
+        <label>Käyttäjätunnus</label>
+        <input type="text" class="form-control" name="username" value="{{username}}">
     </div>
 
     <div class="form-group">
-      <label>Salasana</label>
-      <input type="password" class="form-control" name="password" value="{{password}}">
+        <label>Salasana</label>
+        <input type="password" class="form-control" name="password" value="{{password}}">
     </div>
 
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
-  </form>
+</form>
 
 
 <h1>Vai eikö sinulta löydy viellä tunnusta? Ei hätää, tee tästä uusi!</h1>
-  <p>
+<p>
     <a href="http://xpexpexp.users.cs.helsinki.fi/handler/login/new" class="btn btn-primary btn-lg">Luo uusi käyttäjä <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </p>
+</p>
 
 {% endblock %}

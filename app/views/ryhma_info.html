@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Ryhmän "{{ryhma.nimi}}" tiedot</h1>
+<h1>{{ryhma.nimi}}</h1>
+
 <p>
     <a href="/handler/ryhma/edit/{{ryhma.id}}" class="btn btn-default">Muokkaa</a>
 </p>
-
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -15,11 +15,59 @@
     </thead>
 
     <tbody>
-            <tr>
-                <td>{{ryhma.nimi}}</td>
-                <td>{{ryhma.perustettu}}</td>
-                <td>{{ryhma.kuvaus}}</td>
-            </tr>
+        <tr>
+            <td>{{ryhma.nimi}}</td>
+            <td>{{ryhma.perustettu}}</td>
+            <td>{{ryhma.kuvaus}}</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Luo uusi tapahtuma ryhmälle</h2>
+<form method="post" action="/handler/tapahtuma/post">
+    <div class="form-group">
+        <label>nimi</label>
+        <input type="text" name="nimi" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>kuvaus</label>
+        <input type="text" name="kuvaus" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Alkamisaika (Tulee olla muotoa Y-m-d Tunnit-minuutit-sekunnit)</label>
+        <input type="text" name="aika" class="form-control">
+    </div>
+    <input type="hidden" name="ryhma_id" value="{{ryhma.id}}">
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Luo</button>
+    </div>
+</form>
+
+<h3>Ryhmän tapahtumat</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Ajankohta</th>
+            <th>Kuvaus</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for tapahtuma in tapahtumat %}
+        <tr>
+            <td>
+                <p>
+                    <a href="/handler/tapahtuma/info/{{tapahtuma.id}}" class="btn-default">{{tapahtuma.nimi}}</a>
+                </p>
+            </td>
+            <td>{{tapahtuma.aika}}</td>
+            <td>{{tapahtuma.kuvaus}}</td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

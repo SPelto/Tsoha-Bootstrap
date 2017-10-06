@@ -8,21 +8,29 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
+$routes->post('/logout', function() {
+    kayttaja_controller::logout();
+});
 $routes->get('/login', function() {
 // Kirjautumislomakkeen esittäminen
     kayttaja_controller::login();
 });
+
 $routes->post('/login', function() {
 // Kirjautumisen käsittely
     kayttaja_controller::handle_login();
 });
 
+$routes->get('/main/:id', function($id) {
+    kayttaja_controller::main($id);
+});
+
 $routes->get('/login/new', function() {
-    HelloWorldController::login_new();
+    kayttaja_controller::login_new();
 });
 
 $routes->post('/kayttaja/post', function() {
-    HelloWorldController::tallenna_kayttaja();
+    kayttaja_controller::tallenna_kayttaja();
 });
 $routes->post('/tapahtuma/post', function() {
     tapahtuma_controller::tallenna_tapahtuma();
@@ -38,9 +46,9 @@ $routes->get('/tapahtuma/info/:id', function($id) {
 $routes->get('/tapahtuma/lista', function() {
     tapahtuma_controller::tapahtuma_lista();
 });
-$routes->post('/tapahtuma/:id/edit', function($id){
-  // Pelin muokkaaminen
-  tapahtuma_controller::update($id);
+$routes->post('/tapahtuma/:id/edit', function($id) {
+    // Pelin muokkaaminen
+    tapahtuma_controller::update($id);
 });
 $routes->post('/tapahtuma/:id/destroy', function($id) {
     tapahtuma_controller::tapahtuma_destroy($id);

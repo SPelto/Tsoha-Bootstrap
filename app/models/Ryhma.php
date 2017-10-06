@@ -6,6 +6,7 @@ Class Ryhma extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi');
     }
 
     public static function all() {
@@ -48,6 +49,7 @@ Class Ryhma extends BaseModel {
         $query->execute(array('nimi' => $this->nimi, 'perustettu' => $this->perustettu, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
         $this->id = $row['id'];
+        return $this->id;
     }
 
     public function update() {
