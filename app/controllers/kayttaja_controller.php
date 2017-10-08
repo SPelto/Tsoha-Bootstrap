@@ -6,9 +6,12 @@ class kayttaja_controller extends BaseController {
         View::make('login.html');
     }
 
-    public static function main($id) {
-        $kayttaja = Kayttaja::find($id);
-        View::make('main.html', array('kayttaja' => $kayttaja));
+    public static function main() {
+        $kayttaja_id = $_SESSION['kayttaja'];
+        $kayttaja = Kayttaja::find($kayttaja_id);
+        $ryhmat = Ryhma::findKayttajanRyhmat($kayttaja_id);
+        Kint::dump($ryhmat);
+        View::make('main.html', array('kayttaja' => $kayttaja, 'ryhmat' => $ryhmat));
     }
 
     public static function tallenna_kayttaja() {
@@ -32,7 +35,7 @@ class kayttaja_controller extends BaseController {
             View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         } else {
             $_SESSION['kayttaja'] = $kayttaja->id;
-            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $kayttaja->nimi . '!'));
+            Redirect::to('/main', array('message' => 'Tervetuloa takaisin ' . $kayttaja->nimi . '!'));
         }
     }
 

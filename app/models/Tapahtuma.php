@@ -53,6 +53,7 @@ Class Tapahtuma extends BaseModel {
 
         if ($row) {
             $tapahtuma = new Ryhma(array(
+                'id' => $row['id'],
                 'ryhma_id' => $row['ryhma_id'],
                 'nimi' => $row['nimi'],
                 'kuvaus' => $row['kuvaus'],

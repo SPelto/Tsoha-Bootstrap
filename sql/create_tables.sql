@@ -12,12 +12,12 @@ kuvaus varchar(500) NOT NULL,
 perustettu Timestamp NOT NULL
 );
 CREATE TABLE Liitostaulu(
-Kayttaja_id INTEGER REFERENCES Kayttaja(id),
-Ryhma_id INTEGER REFERENCES Ryhma(id)
+kayttaja_id INTEGER REFERENCES Kayttaja(id),
+ryhma_id INTEGER REFERENCES Ryhma(id)
 );
 CREATE TABLE Tapahtuma(
 id SERIAL PRIMARY KEY,
-Ryhma_id INTEGER REFERENCES Ryhma(id),
+ryhma_id INTEGER REFERENCES Ryhma(id),
 nimi varchar(50) NOT NULL,
 kuvaus varchar(500) NOT NULL,
 aika varchar(50) NOT NULL

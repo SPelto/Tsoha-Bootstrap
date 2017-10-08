@@ -59,7 +59,13 @@ class ryhma_controller extends BaseController {
         self::check_logged_in();
         $ryhma = new Ryhma(array('id' => $id));
         $ryhma->destroy();
-        Redirect::to('/ryhma/lista', array('message' => 'Peli on poistettu onnistuneesti!'));
+        Redirect::to('/main', array('message' => 'Ryhmä on poistettu onnistuneesti!'));
     }
-
+    public static function join($ryhma_id) {
+        self::check_logged_in();
+        $kayttaja_id = $_SESSION['kayttaja'];
+        $liitos = new Liitostaulu(array('kayttaja_id' => $kayttaja_id,'ryhma_id' => $ryhma_id));
+        $liitos->save();
+        Redirect::to('/main', array('message' => 'Liityit ryhmään!'));
+    }
 }

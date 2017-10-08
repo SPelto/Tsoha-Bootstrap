@@ -21,8 +21,8 @@ $routes->post('/login', function() {
     kayttaja_controller::handle_login();
 });
 
-$routes->get('/main/:id', function($id) {
-    kayttaja_controller::main($id);
+$routes->get('/main', function() {
+    kayttaja_controller::main();
 });
 
 $routes->get('/login/new', function() {
@@ -57,6 +57,9 @@ $routes->get('/tapahtuma/edit/:id', function($id) {
     tapahtuma_controller::tapahtuma_edit($id);
 });
 
+$routes->get('/ryhma/join/:id', function($id) {
+    ryhma_controller::join($id);
+});
 $routes->get('/ryhma/info/:id', function($id) {
     ryhma_controller::ryhma_info($id);
 });

@@ -26,6 +26,30 @@ Class Ryhma extends BaseModel {
         return $Ryhmat;
     }
 
+    public static function findKayttajanRyhmat($id) {
+        $query = DB::connection()->prepare(''
+                . 'SELECT * '
+                . 'FROM Kayttaja '
+                . 'INNER JOIN Liitostaulu '
+                . 'ON Kayttaja.id = Liitostaulu.kayttaja_id '
+                . 'INNER JOIN Ryhma '
+                . 'ON Liitostaulu.ryhma_id = Ryhma.id '
+                . 'WHERE Kayttaja.id = :id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $Ryhmat[] = array();
+
+        foreach ($rows as $row) {
+            $Ryhmat[] = new Ryhma(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi'],
+                'kuvaus' => $row['kuvaus'],
+                'perustettu' => $row['perustettu']
+            ));
+        }
+        return $Ryhmat;
+    }
+
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Ryhma WHERE id = :id');
         $query->execute(array('id' => $id));

@@ -5,7 +5,21 @@
     <h1>Tervetuloa {{kayttaja.nimi}}</h1>
 </div>
 
-<p>
-    <a href="ryhma_lista.html" class="btn-default">Ryhmät</a>
-</p>
+<h2>Ryhmät joihin kuulut</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>nimi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ryhma in ryhmat %}
+        <tr>
+            <td>
+                <a href="/handler/ryhma/info/{{ryhma.id}}" class="btn-default">{{ryhma.nimi}}</a>
+            </td> 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock%}
