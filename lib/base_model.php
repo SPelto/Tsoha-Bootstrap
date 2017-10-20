@@ -30,27 +30,18 @@ class BaseModel {
 
     public function validate_nimi() {
         $errors = array();
-        if ($this->nimi == '' || $this->nimi = null) {
+        if ($this->nimi == '' || $this->nimi == null) {
             $errors[] = 'Nimi ei saa olla tyhjä';
         }
-        return $errors;
-    }
-
-    public function validate_puhelinnumero() {
-        $errors = array();
-        if ($this->puhelinnumero == '' || $this->nimi = null) {
-            $errors[] = 'Puhelinnumero ei saa olla tyhjä';
-        }
-
-        if (strlen($this->puhelinnumero) != 10) {
-            $errors[] = 'Puhelinnumerossa on 10 numeroa';
+        if (strlen($this->nimi) < 2) {
+            $errors[] = 'Nimen on oltava yli kaksi merkkiä pitkä';
         }
         return $errors;
     }
 
     public function validate_kuvaus() {
         $errors = array();
-        if ($this->kuvaus == '' || $this->nimi = null) {
+        if ($this->kuvaus == '' || $this->nimi == null) {
             $errors[] = 'Kuvaus ei voi olla tyhjä';
         }
         if (strlen($this->kuvaus) < 5) {
@@ -64,9 +55,31 @@ class BaseModel {
         if ($this->aika == null) {
             $errors[] = 'Tapahtumalla täytyy olla ajankohta';
         }
-//        Seuraavassa if lauseessa pitäisi tarkistaa että päivämäärän "muoto" on oikea. Käy pajassa kysymässä regularexpressioneista by php
-        if ('placeholder' == 'placeholder') {
+        
+        if (strlen($this->aika) < 8) {
+            $errors[] = 'Päivämäärän kirjoittamiseen menee ainakin kahdeksan merkkiä';
+        }
+        return $errors;
+    }
+
+    public function validate_username() {
+        $errors = array();
+        if ($this->username == '' || $this->username == null) {
+            $errors[] = 'Käyttäjätunnus ei voi olla tyhjä';
+        }
+        if (strlen($this->username) < 3) {
+            $errors[] = 'Käyttäjätunnuksen on oltava vähintään kolme merkkiä';
+        }
+        return $errors;
+    }
+
+    public function validate_password() {
+        $errors = array();
+        if ($this->password == '' || $this->password == null) {
             
+        }
+        if (strlen($this->password) < 4) {
+            $errors[] = 'Salasanan on oltava vähintään neljä merkkiä';
         }
         return $errors;
     }

@@ -5,7 +5,7 @@
     <li><strong>Nimi:</strong> {{ryhma.nimi}} </li>
 </ul>
 <ul>
-    <li><strong>Perustettu:</strong> {{ryhma.perustettu|date(Y-m-d)}} HUOM!!! Tämä osio ei toimi viellä kunnolla</li>
+    <li><strong>Perustettu:</strong> {{ryhma.perustettu}}</li>
 </ul>
 <ul>
     <li><strong>Kuvaus:</strong> {{ryhma.kuvaus}} </li>
@@ -23,12 +23,6 @@
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Muokkaa</button>
-    </div>
-</form>
-
-<form method="post" action="/handler/ryhma/{{ryhma.id}}/destroy">
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Poista</button>
     </div>
 </form>
 {% endblock %}

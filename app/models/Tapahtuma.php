@@ -6,7 +6,7 @@ Class Tapahtuma extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi');
+        $this->validators = array('validate_nimi', 'validate_kuvaus', 'validate_aika');
     }
 
     public static function all() {
@@ -47,12 +47,12 @@ Class Tapahtuma extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Tapahtuma WHERE ryhma_id = :ryhma_id');
-        $query->execute(array('ryhma_id' => $id));
+        $query = DB::connection()->prepare('SELECT * FROM Tapahtuma WHERE id = :id');
+        $query->execute(array('id' => $id));
         $row = $query->fetch();
 
         if ($row) {
-            $tapahtuma = new Ryhma(array(
+            $tapahtuma = new Tapahtuma(array(
                 'id' => $row['id'],
                 'ryhma_id' => $row['ryhma_id'],
                 'nimi' => $row['nimi'],

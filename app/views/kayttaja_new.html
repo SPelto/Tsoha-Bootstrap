@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-
 {% block content %}
+
+{% if errors %}
+    {% for error in errors %}
+        <text>{{error}}</text>
+    {% endfor %}
+{% endif %}
+
 <form method="post" action="/handler/kayttaja/post">
     <div class="form-group">
         <label>Nimi</label>
         <input type="text" name="nimi" class="form-control">
     </div>
-
-    <div class="form-group">
-        <label>puhelinnumero</label>
-        <input type="text" name="puhelinnumero" class="form-control">
-    </div>
-
     <div class="form-group">
         <label>käyttäjätunnus</label>
         <input type="text" name="username" class="form-control">

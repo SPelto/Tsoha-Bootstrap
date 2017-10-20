@@ -20,14 +20,25 @@ class ryhma_controller extends BaseController {
 
     public static function ryhma_info($id) {
         self::check_logged_in();
+        $kayttaja_id = $_SESSION['kayttaja'];
         $ryhma = Ryhma::find($id);
         $tapahtumat = Tapahtuma::ryhmanTapahtumat($id);
-        Kint::dump($tapahtumat);
-        View::make('ryhma_info.html', array('ryhma' => $ryhma, 'tapahtumat' => $tapahtumat));
+        $kayttajat = Kayttaja::findRyhmanKayttajat($id);
+        $perustaja = Ryhmaperustaja::findPerustaja($id);
+        $kayttaja = Kayttaja::find($kayttaja_id);
+        $onkoJasen = Liitostaulu::onkoJasen($kayttaja_id, $id);
+
+        View::make('ryhma_info.html', array(
+            'ryhma' => $ryhma,
+            'tapahtumat' => $tapahtumat,
+            'kayttajat' => $kayttajat,
+            'perustaja' => $perustaja,
+            'kayttaja' => $kayttaja,
+            'onkoJasen' => $onkoJasen)
+        );
     }
 
     public static function ryhma_lista() {
-        self::check_logged_in();
         $ryhmat = Ryhma::all();
         View::make('ryhma_lista.html', array('ryhmat' => $ryhmat));
     }
@@ -41,6 +52,13 @@ class ryhma_controller extends BaseController {
         self::check_logged_in();
         $ryhma = Ryhma::find($id);
         View::make('ryhma_edit.html', array('ryhma' => $ryhma));
+    }
+
+    public static function ryhma_eroa($ryhma_id) {
+        self::check_logged_in();
+        $liitostaulu = Liitostaulu::find($_SESSION['kayttaja'], $ryhma_id);
+        $liitostaulu->destroy();
+        Redirect::to('/main', array('message' => 'Erosit ryhmästä'));
     }
 
     public static function ryhma_update($id) {
@@ -61,11 +79,13 @@ class ryhma_controller extends BaseController {
         $ryhma->destroy();
         Redirect::to('/main', array('message' => 'Ryhmä on poistettu onnistuneesti!'));
     }
+
     public static function join($ryhma_id) {
         self::check_logged_in();
         $kayttaja_id = $_SESSION['kayttaja'];
-        $liitos = new Liitostaulu(array('kayttaja_id' => $kayttaja_id,'ryhma_id' => $ryhma_id));
+        $liitos = new Liitostaulu(array('kayttaja_id' => $kayttaja_id, 'ryhma_id' => $ryhma_id));
         $liitos->save();
         Redirect::to('/main', array('message' => 'Liityit ryhmään!'));
     }
+
 }

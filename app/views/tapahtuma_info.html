@@ -2,12 +2,17 @@
 {% block content %}
 <h1>{{tapahtuma.nimi}}</h1>
 <!-- Painikkeet tähän -->
+
 <p>
+    {% if perustaja.id == kayttaja.id %}
     <a href="/handler/tapahtuma/edit/{{tapahtuma.id}}" class="btn btn-default">Muokkaa</a>
+    <a href="/handler/tapahtuma/{{tapahtuma.id}}/destroy" class="btn btn-default">Poista</a>
+    {% endif %}
 </p>
 <!-- Tiedot tulee listana tähän -->
-<ul>
-    <li><strong>Milloin:</strong> {{tapahtuma.aika|date(Y-m-d)}} </li>
+<ul>   
+    <li><strong>Perustaja:</strong> {{perustaja.nimi}} </li>
+    <li><strong>Milloin:</strong> {{tapahtuma.aika}} </li>
 </ul>
 <!-- Kuvaus tulee tähän -->
 <p>

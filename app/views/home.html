@@ -3,13 +3,11 @@
 {% block content %}
 {% if message %}
 <h1>{{message}}</h1>
-{% else %}
+{% endif %}
 <div class="page-header">
     <h1>Tervetuloa timehandleriin</h1>
     <p>
         <a href="http://xpexpexp.users.cs.helsinki.fi/handler/login" class="btn btn-primary btn-lg">Kirjaudu tästä sisään <span class="glyphicon glyphicon-chevron-right"></span></a>
     </p>
 </div>
-{% endif %}
-
 {% endblock %}

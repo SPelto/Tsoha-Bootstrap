@@ -7,10 +7,10 @@ class kayttaja_controller extends BaseController {
     }
 
     public static function main() {
+        self::check_logged_in();
         $kayttaja_id = $_SESSION['kayttaja'];
         $kayttaja = Kayttaja::find($kayttaja_id);
         $ryhmat = Ryhma::findKayttajanRyhmat($kayttaja_id);
-        Kint::dump($ryhmat);
         View::make('main.html', array('kayttaja' => $kayttaja, 'ryhmat' => $ryhmat));
     }
 
@@ -18,12 +18,16 @@ class kayttaja_controller extends BaseController {
         $params = $_POST;
         $kayttaja = new Kayttaja(array(
             'nimi' => $params['nimi'],
-            'puhelinnumero' => $params['puhelinnumero'],
             'username' => $params['username'],
             'password' => $params['password']
         ));
-        $kayttaja->save();
-        Redirect::to('/', array('message' => 'Käyttäjä lisätty järjestelmään'));
+        $errors = $kayttaja->errors();
+        if (count($errors) > 0) {
+            View::make('kayttaja_new.html', array('errors' => $errors));
+        } else {
+            $kayttaja->save();
+            Redirect::to('/', array('message' => 'Käyttäjä lisätty järjestelmään'));
+        }
     }
 
     public static function handle_login() {
@@ -41,7 +45,7 @@ class kayttaja_controller extends BaseController {
 
     public static function logout() {
         $_SESSION['kayttaja'] = null;
-        Redirect::to('/', array('message' => 'Olet kirjautunut ulos'));
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos'));
     }
 
     static function login_new() {
