@@ -1,19 +1,17 @@
-INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Joni',050123123, 'Jon', 'Snow');
-INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Matti',050345345, 'Mati', 'salasana');
-INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Akseli',040123123, 'Aksu', 'tiistai');
-INSERT INTO Kayttaja (nimi, puhelinnumero, username, password) VALUES ('Hannu',050000000, 'Hansu', '1234');
-
-
+INSERT INTO Kayttaja (nimi, username, password) VALUES ('Joni', 'Jon', 'Snow');
+INSERT INTO Kayttaja (nimi, username, password) VALUES ('Matti', 'Mati', 'salasana');
+INSERT INTO Kayttaja (nimi, username, password) VALUES ('Akseli', 'Aksu', 'tiistai');
+INSERT INTO Kayttaja (nimi, username, password) VALUES ('Hannu', 'Hansu', '1234');
 
 INSERT INTO Ryhma (nimi, kuvaus, perustettu) VALUES ('Jonittajat','Tässä ryhmässä Jonitetaan', Now());
 INSERT INTO Ryhma (nimi, kuvaus, perustettu) VALUES ('Shakin pelaajat','Tässä ryhmässä pelataan shakkia', Now());
 INSERT INTO Ryhma (nimi, kuvaus, perustettu) VALUES ('Shakin harrastelijat','Tässä ryhmässä harrastellaan shakkia', Now());
 INSERT INTO Ryhma (nimi, kuvaus, perustettu) VALUES ('Kuvaajat','Tässä ryhmässä kuvataan', Now());
 
-INSERT INTO Tapahtuma (nimi, kuvaus, aika) VALUES ('Jonitus', 'Jonitetaaaaan', Now());
-INSERT INTO Tapahtuma (nimi, kuvaus, aika) VALUES ('Shakkiturnaus', 'Shakkiturnaus kaikille kiinnostuneille', Now());
-INSERT INTO Tapahtuma (nimi, kuvaus, aika) VALUES ('Valokuvaamista', 'Harjoitellaan valokuvaamista', Now());
-INSERT INTO Tapahtuma (nimi, kuvaus, aika) VALUES ('1v1 Shakkimatsi', 'Raivokas 1v1 ottelu', Now());
+INSERT INTO Tapahtuma (nimi, kuvaus, aika, ryhma_id) VALUES ('Jonitus', 'Jonitetaaaaan', Now(), (SELECT id FROM Ryhma WHERE nimi = 'Jonittajat'));
+INSERT INTO Tapahtuma (nimi, kuvaus, aika, ryhma_id) VALUES ('Shakkiturnaus', 'Shakkiturnaus kaikille kiinnostuneille', Now(), (SELECT id FROM Ryhma WHERE nimi = 'Shakin pelaajat'));
+INSERT INTO Tapahtuma (nimi, kuvaus, aika, ryhma_id) VALUES ('Valokuvaamista', 'Harjoitellaan valokuvaamista', Now(), (SELECT id FROM Ryhma WHERE nimi = 'Shakin harrastelijat'));
+INSERT INTO Tapahtuma (nimi, kuvaus, aika, ryhma_id) VALUES ('1v1 Shakkimatsi', 'Raivokas 1v1 ottelu', Now(), (SELECT id FROM Ryhma WHERE nimi = 'Kuvaajat'));
 
 
 INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
@@ -21,6 +19,12 @@ INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
 
 INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
 (SELECT id FROM Kayttaja WHERE nimi = 'Matti'), (SELECT id FROM Ryhma WHERE nimi = 'Shakin pelaajat'));
+
+INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
+(SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Ryhma WHERE nimi = 'Shakin pelaajat'));
+
+INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
+(SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Ryhma WHERE nimi = 'Kuvaajat'));
 
 INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
 (SELECT id FROM Kayttaja WHERE nimi = 'Akseli'), (SELECT id FROM Ryhma WHERE nimi = 'Kuvaajat'));
@@ -38,14 +42,18 @@ INSERT INTO Liitostaulu (Kayttaja_id, Ryhma_id) VALUES (
 (SELECT id FROM Kayttaja WHERE nimi = 'Hannu'), (SELECT id FROM Ryhma WHERE nimi = 'Shakin harrastelijat'));
 
 -- Perustajia
-INSERT INTO Perustaja (Kayttaja_id, Ryhma_id) VALUES (
+INSERT INTO Ryhmaperustaja (Kayttaja_id, Ryhma_id) VALUES (
 (SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Ryhma WHERE nimi = 'Jonittajat'));
 
-INSERT INTO Perustaja (Kayttaja_id, Ryhma_id) VALUES (
-(SELECT id FROM Kayttaja WHERE nimi = 'Matti'), (SELECT id FROM Ryhma WHERE nimi = 'Shakkiturnaus'));
+INSERT INTO Ryhmaperustaja (Kayttaja_id, Ryhma_id) VALUES (
+(SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Ryhma WHERE nimi = 'Shakin pelaajat'));
 
-INSERT INTO Perustaja (Kayttaja_id, Ryhma_id) VALUES (
-(SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Ryhma WHERE nimi = '1v1 Shakkimatsi'));
+INSERT INTO Tapahtumaperustaja (Kayttaja_id, Ryhma_id) VALUES (
+(SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Tapahtuma WHERE nimi = 'Jonitus'));
+
+INSERT INTO Tapahtumaperustaja (Kayttaja_id, Ryhma_id) VALUES (
+(SELECT id FROM Kayttaja WHERE nimi = 'Joni'), (SELECT id FROM Tapahtuma WHERE nimi = 'Valokuvaamista'));
+
 
 
 -- -- Player-taulun testidata
