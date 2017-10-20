@@ -45,7 +45,7 @@ class kayttaja_controller extends BaseController {
 
     public static function logout() {
         $_SESSION['kayttaja'] = null;
-        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos'));
+        Redirect::to('/login');
     }
 
     static function login_new() {
