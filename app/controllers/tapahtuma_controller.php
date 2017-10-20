@@ -60,17 +60,15 @@ class tapahtuma_controller extends BaseController {
             'kuvaus' => $params['kuvaus'],
             'aika' => $params['aika']
         );
-
-
         $tapahtuma = new Tapahtuma($attributes);
-//    $errors = $tapahtuma->errors();
-//    if(count($errors) > 0){
-//      View::make('game/edit.html', array('errors' => $errors, 'attributes' => $attributes));
-//    }else{
-        // Kutsutaan alustetun olion update-metodia, joka päivittää pelin tiedot tietokannassa
-        $tapahtuma->update();
-        Redirect::to('/tapahtuma/info/' . $id);
-//    }
+
+        $errors = $tapahtuma->errors();
+        if (count($errors) > 0) {
+            View::make('tapahtuma_edit.html', array('errors' => $errors));
+        } else {
+            $tapahtuma->update();
+            Redirect::to('/tapahtuma/info/' . $id);
+        }
     }
 
     // Pelin poistaminen

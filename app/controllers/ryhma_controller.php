@@ -69,8 +69,14 @@ class ryhma_controller extends BaseController {
             'nimi' => $params['nimi'],
             'kuvaus' => $params['kuvaus']
         ));
-        $ryhma->update();
-        Redirect::to('/ryhma/info/' . $id);
+
+        $errors = $ryhma->errors();
+        if (count($errors) > 0) {
+            View::make('ryhma_edit.html', array('errors' => $errors));
+        } else {
+            $ryhma->update();
+            Redirect::to('/ryhma/info/' . $id);
+        }
     }
 
     public static function ryhma_destroy($id) {

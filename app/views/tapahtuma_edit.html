@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% if errors %}
+
+{% for error in errors %}
+<text>{{error}} </text>
+{% endfor %}
+
+{% endif %}
+
 <h1>Vanhat tiedot</h1>
 <ul>
     <li><strong>Nimi:</strong> {{tapahtuma.nimi}} </li>

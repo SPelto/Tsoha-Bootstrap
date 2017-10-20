@@ -6,7 +6,7 @@ Class Tapahtuma extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi', 'validate_kuvaus', 'validate_aika');
+        $this->validators = array('validate_nimi', 'validate_kuvaus', 'validate_timestamp');
     }
 
     public static function all() {
